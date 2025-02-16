@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+  <title>Insurance Management System</title>
+  <style>
+    .xyz {
+      margin-bottom: 0;
+      background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pixelstalk.net%2Fwp-content%2Fuploads%2F2016%2F06%2FHD-images-of-nature-download.jpg&f=1&nofb=1&ipt=d236bbe2ae45785b0d7fdf649ef0e3ae1bc00f16b13e7fda3f31fffd3aa64f52&ipo=images'), linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)); /* Blend the background with dark overlay */
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 100vh; /* Full viewport height */
+    }
+
+    /* Styling for the main jumbotron */
+    .jumbotron {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    /* Lead paragraph (main text) styling */
+    .jumbotron .lead {
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: rgb(255, 255, 6); /* White text color */
+      text-shadow: 4px 4px 4px rgba(0, 255, 98, 0.596); /* Adds a shadow effect to improve readability */
+    }
+
+    /* Quote text styling */
+    .quote-text {
+      font-style: italic;
+      font-size: 1.25rem;
+      color: #0037ff; /* Light cyan color for contrast */
+      text-shadow: 1px 1px 3px rgba(203, 34, 34, 0.755); /* Subtle shadow for better visibility */
+    }
+
+    /* Image container styling */
+    .image-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      margin-top: 20px;
+    }
+
+    /* Oval shape container styling */
+    .oval-image {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%; /* Create oval shape */
+      overflow: hidden;
+      border: 5px solid rgb(0, 255, 217); /* Border around the oval image */
+    }
+
+    /* Image inside oval container */
+    .oval-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Ensures the image fills the container without distortion */
+    }
+  </style>
+</head>
+
+<body>
+  {% include "insurance/navbar.html" %}
+
+  <section id="section-jumbotron" class="jumbotron jumbotron-fluid d-flex justify-content-center align-items-center xyz">
+    <div class="container text-center">
+      <p class="lead">"INSURANCE POLICY MANAGEMENT SYSTEM.A PLATFORM TO SIMPLIFY AND CENTRALISE YOUR INSURANCE CONCERNS!!!!"</p>
+      <!-- Optional content like headings or buttons can go here -->
+      <div class="image-container">
+        <div class="oval-image">
+          <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fjmlakshmisagar.github.io%2FResume-Builder%2Frvce_logo.png&f=1&nofb=1&ipt=f241b0043b7d8ba8dd1cf9ae23f44a9beca48da8640876e9cc7a063bef304363&ipo=images" alt="Oval Image"> <!-- Replace with the image URL -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="jumbotron text-center">
+    <p class="lead">"Whole life does two things for you: Protects your family and allows you to save for your future."</p>
+    <p class="quote-text">- Dinara</p>
+  </div>
+
+  {% include "insurance/footer.html" %}
+</body>
+
+</html>
