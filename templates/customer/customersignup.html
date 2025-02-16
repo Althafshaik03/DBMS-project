@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+{% load widget_tweaks %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <style>
+        form {
+            margin: 50px;
+        }
+        .errorlist {
+            color: red;
+            list-style: none;
+            padding-left: 0;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .show-password {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+        }
+    </style>
+  </head>
+  <body>
+    {% include "insurance/navbar.html" %}
+
+    <br><br><br>
+    <h3 style="text-align: center; color: red;">CUSTOMER SIGNUP</h3>
+
+    <!-- Display Form Errors -->
+    {% if userForm.errors or customerForm.errors %}
+        <div style="text-align: center; color: red;">
+            <strong>Please correct the following errors:</strong>
+            <ul>
+                {% for field in userForm %}
+                    {% for error in field.errors %}
+                        <li>{{ field.label }}: {{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+                {% for field in customerForm %}
+                    {% for error in field.errors %}
+                        <li>{{ field.label }}: {{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    <form method="POST" autocomplete="off" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="username">Username</label>
+                {% render_field userForm.username|attr:'required:true' class="form-control" placeholder="Username" %}
+                {% if userForm.username.errors %}
+                    <div class="errorlist">{{ userForm.username.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputPassword4">Password</label>
+                {% render_field userForm.password|attr:'required:true' class="form-control" placeholder="Password" id="password" %}
+                {% if userForm.password.errors %}
+                    <div class="errorlist">
+                        {% for error in userForm.password.errors %}
+                            <div>{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <span class="show-password" onclick="togglePassword()">Show Password</span>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="first_name">First Name</label>
+                {% render_field userForm.first_name|attr:'required:true' class="form-control" placeholder="First Name" %}
+                {% if userForm.first_name.errors %}
+                    <div class="errorlist">{{ userForm.first_name.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group col-md-6">
+                <label for="last_name">Last Name</label>
+                {% render_field userForm.last_name|attr:'required:true' class="form-control" placeholder="Last Name" %}
+                {% if userForm.last_name.errors %}
+                    <div class="errorlist">{{ userForm.last_name.errors }}</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="mobile">Mobile</label>
+                {% render_field customerForm.mobile|attr:'required:true' class="form-control" placeholder="Mobile" %}
+                {% if customerForm.mobile.errors %}
+                    <div class="errorlist">{{ customerForm.mobile.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group col-md-6">
+                <label for="address">Address</label>
+                {% render_field customerForm.address|attr:'required:true' class="form-control" placeholder="Address" %}
+                {% if customerForm.address.errors %}
+                    <div class="errorlist">{{ customerForm.address.errors }}</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label for="profile_pic">Profile Picture</label>
+                {% render_field customerForm.profile_pic|attr:'required:true' class="form-control" %}
+                {% if customerForm.profile_pic.errors %}
+                    <div class="errorlist">{{ customerForm.profile_pic.errors }}</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+    </form>
+
+    <br><br>
+    {% include "insurance/footer.html" %}
+
+    <script>
+        function togglePassword() {
+            const passwordField = document.getElementById("password");
+            const toggleText = document.querySelector(".show-password");
+
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                toggleText.textContent = "Hide Password";
+            } else {
+                passwordField.type = "password";
+                toggleText.textContent = "Show Password";
+            }
+        }
+    </script>
+  </body>
+</html>
